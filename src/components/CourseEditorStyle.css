@@ -1,0 +1,36 @@
+.wbdv-heading-font{
+    font-family:georgia,garamond,serif;
+    font-size:16px;
+}
+h1 {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 20000px;
+}
+/*body {*/
+/*    padding-top: 100px;*/
+/*}*/
+
+.wbdv-module-add{
+    margin-top: 10px;
+}
+
+.wbdv-topics-add{
+    margin-top: 5px;
+}
+
+.wbdv-text-position {
+    margin-top: 10px;
+    width: 200px;
+}
+.postion-style{
+    margin-left: 10px;
+    margin-right: 10px
+}
