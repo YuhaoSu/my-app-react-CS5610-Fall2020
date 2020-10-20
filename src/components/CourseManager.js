@@ -10,7 +10,7 @@ class CourseManager extends React.Component {
     state = {
         courses: [],
         courseBeingEdited: {},
-        showingTable: true
+        showingTable: this.props.showingTable
     }
 
     componentDidMount() {

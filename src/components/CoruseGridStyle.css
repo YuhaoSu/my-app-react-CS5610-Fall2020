@@ -1,7 +1,18 @@
-div.row:active
-{
-    background-color: aliceblue;
-}
+/*div.col md-4:active*/
+/*{*/
+/*    background-color: aliceblue;*/
+/*}*/
+
+
+/*.hoverTable {*/
+/*}*/
+
+/*table tr:active{*/
+/*    background-color: aliceblue ;*/
+/*}*/
+
+
+
 
 body {
     padding-top: 100px;
