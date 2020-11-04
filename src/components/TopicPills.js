@@ -10,6 +10,8 @@ import lessonService from "../services/LessonService";
 
 const TopicPills = (
     {
+        moduleId,
+        course,
         lessonId,
         topics=[],
         createTopicForLesson,
@@ -24,7 +26,7 @@ const TopicPills = (
             {
                 topics.map(topic =>
                         <li key={topic._id} className="nav-item wbdv-topic-pill">
-                            <a class="nav-link">
+                            <a className="nav-link">
                                 <button onClick={() => deleteTopic(topic._id)}>
                                     <i className="fa fa-times"></i>
                                 </button>
@@ -35,7 +37,7 @@ const TopicPills = (
                                         edit(topic)}>
                                         <i className="fa fa-pencil"></i>
                                         </button>
-                                        <Link to={`/edit/${lessonId}/topics/${topics._id}`}>
+                                        <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}>
                                         {topic.title}
                                         </Link>
                                     </span>
@@ -67,6 +69,8 @@ const TopicPills = (
             </div>
 
 const stateToPropertyMapper = (state) => ({
+    course: state.courseReducer.course,
+    moduleId: state.lessonReducer.moduleId,
     topics: state.topicReducer.topics,
     lessonId: state.topicReducer.lessonId
 })
@@ -111,7 +115,6 @@ const dispatchToPropertyMapper = (dispatch) => ({
                 type: "CREATE_TOPIC_FOR_LESSON",
                 topic: actualTopic
             }))
-
 
 })
 

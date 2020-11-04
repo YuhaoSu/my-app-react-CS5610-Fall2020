@@ -8,6 +8,7 @@ import courseReducer from "../reducers/courseReducer";
 
 const LessonTabs = (
     {
+        course,
         moduleId,
         lessons=[],
         createLessonForModule,
@@ -22,7 +23,7 @@ const LessonTabs = (
             {
                 lessons.map(lesson =>
                         <li key={lesson._id} className="nav-item">
-                            <a class="nav-link">
+                            <a className="nav-link">
                                 <button onClick={() => deleteLesson(lesson._id)}>
                                     <i className="fa fa-times"></i>
                                 </button>
@@ -33,7 +34,7 @@ const LessonTabs = (
                                     edit(lesson)}>
                                     <i className="fa fa-pencil"></i>
                                     </button>
-                                        <Link to={`/edit/${moduleId}/lessons/${lesson._id}`}>
+                                        <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
                                             {lesson.title}
                                         </Link>
                                     </span>
@@ -63,6 +64,7 @@ const LessonTabs = (
     </div>
 
 const stateToPropertyMapper = (state) => ({
+    course: state.courseReducer.course,
     lessons: state.lessonReducer.lessons,
     moduleId: state.lessonReducer.moduleId,
 })

@@ -35,10 +35,11 @@ export class SysManager extends React.Component {
                         <CourseManager showingTable={false}/>
                     </Route>
                     <Route
-                        path={["/edit/:courseId",
+                        path={[
+                            "/edit/:courseId",
                             "/edit/:courseId/modules/:moduleId",
-                            "/edit/:moduleId/lessons/:lessonId",
-                            "/edit/lessonId/topics/topicId"]}
+                            "/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                            "/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
                         exact
                         component={CourseEditor}/>
 

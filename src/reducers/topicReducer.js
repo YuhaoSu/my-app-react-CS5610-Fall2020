@@ -1,8 +1,8 @@
 // const initialState = {
 //     TOPICS: []
 // }
+//import React from "react";
 
-import React from "react";
 
 export const topicReducer = (state= {}, action) => {
     switch (action.type) {
