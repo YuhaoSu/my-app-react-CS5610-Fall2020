@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import HeadingWidget from "./widgets/HeadingWidget";
-import ParagraphWidget from "./widgets/ParagraphWidget";
+import ListWidget from "./widgets/ListWidget";
+import ImageWidget from "./widgets/ImageWidget";
 import widgetService from "../services/WidgetService";
 
 const WidgetList =
@@ -21,8 +21,8 @@ const WidgetList =
             {
                 widgets.map(widget =>
                         <li key={widget.id}>
-                            { widget.type === "HEADING" &&
-                                <HeadingWidget
+                            { widget.type === "list" &&
+                                <ListWidget
                                     widget={widget}
                                     editing={editing}
                                     deleteWidget={deleteWidget}
@@ -33,8 +33,8 @@ const WidgetList =
                                 />
                             }
                             {
-                                widget.type === "PARAGRAPH" &&
-                                <ParagraphWidget
+                                widget.type === "image" &&
+                                <ImageWidget
                                     widget={widget}
                                     editing={editing}
                                     deleteWidget={deleteWidget}
@@ -44,10 +44,6 @@ const WidgetList =
                                     preview={preview}
                                 />
                             }
-
-
-
-
 
 
 
@@ -71,11 +67,11 @@ const WidgetList =
 
                 {/*                    {*/}
                 {/*                        widget.type === "HEADING" &&*/}
-                {/*                        <HeadingWidget widget={widget} editing={editing}/>*/}
+                {/*                        <ListWidget widget={widget} editing={editing}/>*/}
                 {/*                    }*/}
                 {/*                    {*/}
                 {/*                        widget.type === "PARAGRAPH" &&*/}
-                {/*                        <ParagraphWidget/>*/}
+                {/*                        <ImageWidget/>*/}
                 {/*                    }*/}
                 {/*                    <button onClick={() => editWidget(widget)}>*/}
                 {/*    Edit*/}
@@ -97,16 +93,21 @@ const stateToPropertyMapper = (state) => ({
     topicId: state.widgetReducer.topicId,
     editing: state.widgetReducer.editing,
     preview: state.widgetReducer.preview
-
 })
 
 const propertyToDispatchMapper = (dispatch) => ({
+    changePreviewToFalse: (widget) =>
+        dispatch({
+            type: "CHANGE_PREVIEW_TO_FALSE"
+            }),
+
     deleteWidget: (widgetId) =>
         widgetService.deleteWidget(widgetId)
             .then(status => dispatch({
                 type: "DELETE_WIDGET",
                 widgetId
             })),
+
     createWidgetForTopic: (topicId) =>
         widgetService.createWidgetForTopic(
             topicId, {
@@ -137,7 +138,6 @@ const propertyToDispatchMapper = (dispatch) => ({
             type: "UPDATE_WIDGET",
             widget: {...widget, editing: false}
         }))
-
 })
 
 

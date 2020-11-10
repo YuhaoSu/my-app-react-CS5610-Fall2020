@@ -18,7 +18,11 @@ export const findWidgetsForTopic = (topicId) =>
 export const createWidgetForTopic = (topicId) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`, {
         method: "POST",
-        body: JSON.stringify({name: "NEW HEADING", type: "HEADING"}),
+        body: JSON.stringify({
+            name: "NEW HEADING",
+            type: "list",
+            url: "http://icons.iconarchive.com/icons/aroche/delta/256/File-JPG-icon.png"
+        }),
         headers: {
             "content-type": "application/json"
         }
@@ -35,9 +39,13 @@ export const updateWidget = (widgetId, newWidget) =>
     }).then(response => response.json())
 
 export const deleteWidget = (widgetId) =>
+    // fetch(`${WIDGET_URL}/${widgetId}`,{
+    //     method: "DELETE"
+    // }).then(response => response.json())
     fetch(`${WIDGET_URL}/${widgetId}`,{
         method: "DELETE"
     }).then(response => response.json())
+
 
 
 export default {

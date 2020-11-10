@@ -29,7 +29,6 @@ export const widgetReducer = (state = initialState, action) => {
                 ]
             }
 
-
         case "UPDATE_WIDGET":
             return {
                 ...state,
@@ -37,6 +36,19 @@ export const widgetReducer = (state = initialState, action) => {
                     widget => widget.id === action.widget.id ?
                         action.widget : widget)
             }
+
+        case "CHANGE_PREVIEW_TO_FALSE":
+            return {
+                ...state,
+                preview: false
+            }
+
+        case "CHANGE_PREVIEW_TO_TRUE":
+            return {
+                ...state,
+                preview: true
+            }
+
         default:
             return state
     }

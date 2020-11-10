@@ -2,19 +2,21 @@ import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css"
 
-const HeadingWidget = (
+const ListWidget = (
     {
         editing=this.props.editing,
         widget=this.props.widget,
+        editWidget=this.props.editWidget,
         deleteWidget=this.props.deleteWidget,
         updateWidget=this.props.updateWidget,
         okWidget=this.props.okWidget,
         preview=this.props.preview,
+
     }) =>
     <div>
         {{editing}&&
         <div>
-            <h3>Heading widgets
+            <h3>List widgets
                 <span className="pull-right">
                         <a href="#" className="btn btn-warning">
                         <i className="fa fa-arrow-up"></i></a>
@@ -24,8 +26,8 @@ const HeadingWidget = (
                     ...widget,
                     type: event.target.value
                 })}>
-                    <option>HEADING</option>
-                    <option>PARAGRAPH</option>
+                    <option>list</option>
+                    <option>image</option>
                     value={widget.type}
                 </select>
                     <a href="#"
@@ -37,20 +39,18 @@ const HeadingWidget = (
             </h3>
 
             <span>
-            <input className="form-control"
-                   placeholder="Heading Text"
-                   onChange={(event) => updateWidget({
-                       ...widget,
-                       text: event.target.value
-                   })}
-                   value={widget.text}
+            <textarea
+                className="form-control"
+                placeholder="Heading Text"
+                onChange={(event) => updateWidget({
+                    ...widget,
+                    text: event.target.value
+                })}
+                value={widget.text}
             />
             <select className="form-control" >
-                <option>Heading 1</option>
-                <option>Heading 2</option>
-                <option>Heading 3</option>
-                <option>Heading 4</option>
-                <option>Heading 5</option>
+                <option>Unordered List</option>
+                <option>Ordered List</option>
             </select>
             <input placeholder="Name"
                    className="form-control"
@@ -83,11 +83,14 @@ const HeadingWidget = (
             </div>
         }
         {{preview}&&
-        <h3>We have preview on</h3>
+        <div>
+            <h5>Preview</h5>
+            {widget.text}
+        </div>
         }
         {!{preview}&&
         <h3>We have preview off</h3>
         }
     </div>
 
-export default HeadingWidget
+export default ListWidget

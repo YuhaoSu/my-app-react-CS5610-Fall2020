@@ -1,15 +1,16 @@
 import React from "react";
 
-const ParagraphWidget = (
+const ImageWidget = (
     {
         editing=this.props.editing,
         widget=this.props.widget,
         deleteWidget=this.props.deleteWidget,
         updateWidget=this.props.updateWidget,
         okWidget=this.props.okWidget,
+        preview=this.props.preview,
     }) =>
     <div>
-        <h3>Paragraph widgets
+        <h3>Image widgets
                 <span className="pull-right">
                         <a href="#" className="btn btn-warning">
                         <i className="fa fa-arrow-up"></i></a>
@@ -19,8 +20,8 @@ const ParagraphWidget = (
                     ...widget,
                     type: event.target.value
                 })}>
-                    <option>HEADING</option>
-                    <option>PARAGRAPH</option>
+                    <option>List</option>
+                    <option>image</option>
                     value={widget.type}
                 </select>
                     <a href="#"
@@ -31,15 +32,16 @@ const ParagraphWidget = (
                     </span>
             </h3>
 
-        <textarea
+        <input
             className="form-control"
+            placeholder="http://icons.iconarchive.com/icons/aroche/delta/256/File-JPG-icon.png"
             onChange={(event) => updateWidget({
                 ...widget,
                 text: event.target.value
             })}
-            value={widget.text}
+            value={widget.url}
         />
-        <input placeholder="Name"
+        <input placeholder="Widget Name"
                className="form-control"
                onChange={(event) => updateWidget({
                    ...widget,
@@ -49,6 +51,17 @@ const ParagraphWidget = (
         /><button onClick={() => okWidget(widget)}>
         Ok
     </button>
+        {{preview}&&
+        <div>
+            <h5>Preview</h5>
+            <img className="fit-picture"
+                 src={widget.url}
+                 />
+        </div>
+        }
+        {!{preview}&&
+        <h3>We have preview off</h3>
+        }
     </div>
 
-export default ParagraphWidget
+export default ImageWidget
