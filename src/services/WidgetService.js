@@ -1,5 +1,8 @@
-const WIDGET_URL = "http://localhost:8080/api/widgets"
-const TOPIC_URL  = "http://localhost:8080/api/topics"
+// const WIDGET_URL = "http://localhost:8080/api/widgets"
+// const TOPIC_URL  = "http://localhost:8080/api/topics"
+
+const WIDGET_URL = "http://sheltered-brook-47348.herokuapp.com/api/widgets"
+const TOPIC_URL  = "http://sheltered-brook-47348.herokuapp.com/api/topics"
 
 
 // const WIDGET_URL = "https://wbdv-generic-server.herokuapp.com/api/Yuhao-Augus-Su/widgets"
