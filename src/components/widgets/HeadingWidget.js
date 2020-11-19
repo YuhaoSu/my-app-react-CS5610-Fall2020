@@ -35,8 +35,8 @@ const HeadingWidget = (
                             value={widget.type}>
                         <option value={"HEADING"}>HEADING </option>
                         <option value={"PARAGRAPH"}>PARAGRAPH </option>
-                        {/*<option value={"List"}>List </option>*/}
-                        {/*<option value={"image"}>image </option>*/}
+                        <option value={"LIST"}>LIST </option>
+                        <option value={"IMAGE"}>IMAGE </option>
                     </select>
 
                     <button

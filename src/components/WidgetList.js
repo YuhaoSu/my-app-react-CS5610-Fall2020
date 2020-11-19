@@ -3,6 +3,9 @@ import {connect} from "react-redux";
 import HeadingWidget from "./widgets/HeadingWidget";
 import ParagraphWidget from "./widgets/ParagraphWidget";
 import widgetService from "../services/WidgetService";
+import ListWidget from "./widgets/ListWidget";
+import {UPDATE_WIDGET} from "../actions/widgetActions";
+import ImageWidget from "./widgets/ImageWidget";
 
 const WidgetList =
     ({
@@ -16,7 +19,6 @@ const WidgetList =
          moveDownWidget,
          editingWidget,
          editingWidgetFalse,
-         okWidget,
          saveAll,
     }) =>
     <div>
@@ -61,7 +63,6 @@ const WidgetList =
                                     index={index}
                                     moveUpWidget={moveUpWidget}
                                     moveDownWidget={moveDownWidget}
-                                    okWidget={okWidget}
                                 />
                             }
                             {
@@ -75,8 +76,31 @@ const WidgetList =
                                     index={index}
                                     moveUpWidget={moveUpWidget}
                                     moveDownWidget={moveDownWidget}
-                                    okWidget={okWidget}
                                 />
+                            }
+                            { widget.type === "LIST" &&
+                            <ListWidget
+                                widget={widget}
+                                widgets={widgets}
+                                editing={editing}
+                                deleteWidget={deleteWidget}
+                                updateWidget={updateWidget}
+                                index={index}
+                                moveUpWidget={moveUpWidget}
+                                moveDownWidget={moveDownWidget}
+                            />
+                            }
+                            { widget.type === "IMAGE" &&
+                            <ImageWidget
+                                widget={widget}
+                                widgets={widgets}
+                                editing={editing}
+                                deleteWidget={deleteWidget}
+                                updateWidget={updateWidget}
+                                index={index}
+                                moveUpWidget={moveUpWidget}
+                                moveDownWidget={moveDownWidget}
+                            />
                             }
                             <br/>
                         </li>
@@ -148,13 +172,6 @@ const propertyToDispatchMapper = (dispatch) => ({
             widget: widget
         }),
 
-    okWidget: (widget) =>
-        widgetService.updateWidget(widget.id, {
-            ...widget,
-        }).then(status => dispatch({
-            type: "UPDATE_WIDGET",
-            widget: {...widget}
-        }))
 
 })
 
