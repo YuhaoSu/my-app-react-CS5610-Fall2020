@@ -12,7 +12,7 @@ export default class CourseRow extends React.Component{
     }
     render(){
         return(
-            <tr>
+            <tr >
                 <td>
                     {
                         this.state.editing &&

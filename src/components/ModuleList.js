@@ -55,7 +55,7 @@ const ModuleList = (
                 )
             }
         </ul>
-            <i className="fa fa-plus-circle"
+            <i className="fa fa-plus-circle fa-2x"
                onClick={() => createModule(course)}
                aria-hidden="true"></i>
 

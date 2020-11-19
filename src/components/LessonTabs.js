@@ -23,7 +23,7 @@ const LessonTabs = (
             {
                 lessons.map(lesson =>
                         <li key={lesson._id} className="nav-item">
-                            <a className="nav-link">
+                            {/*<a className="nav-link">*/}
                                 <button onClick={() => deleteLesson(lesson._id)}>
                                     <i className="fa fa-times"></i>
                                 </button>
@@ -32,7 +32,8 @@ const LessonTabs = (
                                     <span>
                                     <button onClick={() =>
                                     edit(lesson)}>
-                                    <i className="fa fa-pencil"></i>
+                                    <i className="fa fa-pencil">
+                                    </i>
                                     </button>
                                         <Link to={`/edit/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
                                             {lesson.title}
@@ -54,11 +55,11 @@ const LessonTabs = (
                                     value={lesson.title}/>
                                     </span>
                                 }
-                            </a>
+                            {/*</a>*/}
                         </li>)
             }
         </ul>
-            <i className="fa fa-plus-circle"
+            <i className="fa fa-plus-circle fa-2x"
                onClick={() => createLessonForModule(moduleId)}
                aria-hidden="true"></i>
     </div>

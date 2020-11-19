@@ -28,8 +28,6 @@ class CourseManager extends React.Component {
                     courses: prevState.courses.filter(c => c._id !== course._id)
                 })
             ))
-            .catch(error => {
-            })
     }
 
     addCourse = () => {
@@ -69,12 +67,15 @@ class CourseManager extends React.Component {
         return (
             <div className="container">
                 <h1 className="wbdv-sticky-header wbdv-label wbdv-course-manager">
-                    <i className="fa fa-align-justify wbdv-field wbdv-hamburger" aria-hidden="true"></i>
+                    <i className="fa fa-align-justify wbdv-field wbdv-hamburger" aria-hidden="true">
+                    </i>
                     Course Manager
                     <input type="text" className="wbdv-field wbdv-new-course" placeholder="New Course Title"/>
                     <i className="fa fa-plus-circle pull-right fa-2x wbdv-add-course-button wbdv-button wbdv-add-course"
                        onClick={this.addCourse}
-                       aria-hidden="true"></i>
+                       aria-hidden="true">
+
+                    </i>
                 </h1>
                 {
                     this.state.showingTable &&

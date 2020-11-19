@@ -26,7 +26,7 @@ const TopicPills = (
             {
                 topics.map(topic =>
                         <li key={topic._id} className="nav-item wbdv-topic-pill">
-                            <a className="nav-link">
+                            {/*<a className="nav-link">*/}
                                 <button onClick={() => deleteTopic(topic._id)}>
                                     <i className="fa fa-times"></i>
                                 </button>
@@ -57,13 +57,13 @@ const TopicPills = (
                                             value={topic.title}/>
                                     </span>
                                 }
-                            </a>
+                            {/*</a>*/}
                         </li>)
             }
 
         </ul>
 
-            <i className="fa fa-plus-circle"
+            <i className="fa fa-plus-circle fa-2x"
                onClick={() => createTopicForLesson(lessonId)}
                 aria-hidden="true"></i>
             </div>

@@ -22,17 +22,23 @@ export default class CourseTable extends CourseManagerComponent{
                         aria-hidden="true">
                     </i>
                 </th>
-                <th><i className="fa fa-sort-alpha-asc wbdv-header wbdv-sort" aria-hidden="true"></i></th>
+                <th><i className="fa fa-sort-alpha-asc wbdv-header wbdv-sort" aria-hidden="true">
+
+                </i>
+                </th>
 
             </tr>
             </thead>
+            <tbody>
                 {
                     this.props.courses.map(course =>
                         <CourseRow
+                            key={course._id}
                             deleteCourse={this.props.deleteCourse}
                             course={course}/>
                     )
                 }
+            </tbody>
             </table>
             </div>
 

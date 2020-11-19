@@ -3,11 +3,31 @@
 const initialState = {
     widgets: [],
     editing: true,
-    preview: true,
 }
 
 export const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case "MOVE_WIDGET":
+            return {
+                ...state,
+                widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
+            }
+
+        case "EDITING_WIDGET":
+            return {
+                ...state,
+                editing: true,
+                topicId: action.topicId
+            }
+
+        case "EDITING_WIDGET_FALSE":
+            return {
+                ...state,
+                editing: false,
+                topicId: action.topicId
+            }
+
         case "FIND_WIDGETS_FOR_TOPIC":
             return {
                 ...state,
@@ -29,6 +49,7 @@ export const widgetReducer = (state = initialState, action) => {
                 ]
             }
 
+
         case "UPDATE_WIDGET":
             return {
                 ...state,
@@ -36,19 +57,6 @@ export const widgetReducer = (state = initialState, action) => {
                     widget => widget.id === action.widget.id ?
                         action.widget : widget)
             }
-
-        case "CHANGE_PREVIEW_TO_FALSE":
-            return {
-                ...state,
-                preview: false
-            }
-
-        case "CHANGE_PREVIEW_TO_TRUE":
-            return {
-                ...state,
-                preview: true
-            }
-
         default:
             return state
     }

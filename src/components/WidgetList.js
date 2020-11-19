@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import ListWidget from "./widgets/ListWidget";
-import ImageWidget from "./widgets/ImageWidget";
+import HeadingWidget from "./widgets/HeadingWidget";
+import ParagraphWidget from "./widgets/ParagraphWidget";
 import widgetService from "../services/WidgetService";
 
 const WidgetList =
@@ -11,77 +11,78 @@ const WidgetList =
          deleteWidget,
          createWidgetForTopic,
          updateWidget,
-         editWidget,
-         okWidget,
          editing,
-         preview,
+         moveUpWidget,
+         moveDownWidget,
+         editingWidget,
+         editingWidgetFalse,
+         okWidget,
+         saveAll,
     }) =>
     <div>
+        {
+            editing &&
+            <i
+                onClick={()=>editingWidgetFalse(topicId)}
+                className="fa fa-toggle-off float-right fa-2x" aria-hidden="true"
+            >
+                <h4 className="float-right">PREVIEW</h4>
+            </i>}
+
+        {
+            !editing &&
+            <i
+                onClick={()=>editingWidget(topicId)}
+                className="fa fa-toggle-on float-right fa-2x" aria-hidden="true"
+            >
+                <h4 className="float-right">PREVIEW</h4>
+            </i>}
+
+        <i
+            onClick={()=>saveAll(topicId,widgets)}
+            className="fa fa-floppy-o float-right fa-2x" aria-hidden="true"
+        >
+        </i>
+
+
+        <br/>
+        <br/>
         <ul>
             {
-                widgets.map(widget =>
+                widgets.map((widget, index) =>
                         <li key={widget.id}>
-                            { widget.type === "list" &&
-                                <ListWidget
+                            { widget.type === "HEADING" &&
+                                <HeadingWidget
                                     widget={widget}
+                                    widgets={widgets}
                                     editing={editing}
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    editWidget={editWidget}
+                                    index={index}
+                                    moveUpWidget={moveUpWidget}
+                                    moveDownWidget={moveDownWidget}
                                     okWidget={okWidget}
-                                    preview={preview}
                                 />
                             }
                             {
-                                widget.type === "image" &&
-                                <ImageWidget
+                                widget.type === "PARAGRAPH" &&
+                                <ParagraphWidget
                                     widget={widget}
+                                    widgets={widgets}
                                     editing={editing}
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    editWidget={editWidget}
+                                    index={index}
+                                    moveUpWidget={moveUpWidget}
+                                    moveDownWidget={moveDownWidget}
                                     okWidget={okWidget}
-                                    preview={preview}
                                 />
                             }
-
-
-
-                {/*            {*/}
-                {/*                editing &&*/}
-                {/*                <span><input*/}
-                {/*                    onChange={(event) => updateWidget({*/}
-                {/*                        ...widget,*/}
-                {/*                        name: event.target.value*/}
-                {/*                    })}*/}
-                {/*                    value={widget.name}/>*/}
-                {/*<button onClick={() => okWidget(widget)}>*/}
-                {/*  Ok*/}
-                {/*</button>*/}
-                {/*</span>*/}
-                {/*            }*/}
-                {/*            {*/}
-                {/*                !editing &&*/}
-                {/*                <span>*/}
-                {/*  {widget.name}*/}
-
-                {/*                    {*/}
-                {/*                        widget.type === "HEADING" &&*/}
-                {/*                        <ListWidget widget={widget} editing={editing}/>*/}
-                {/*                    }*/}
-                {/*                    {*/}
-                {/*                        widget.type === "PARAGRAPH" &&*/}
-                {/*                        <ImageWidget/>*/}
-                {/*                    }*/}
-                {/*                    <button onClick={() => editWidget(widget)}>*/}
-                {/*    Edit*/}
-                {/*  </button>*/}
-                {/*</span>*/}
-                {/*            }*/}
-
+                            <br/>
                         </li>
                 )
             }
+            {console.log(widgets)}
         </ul>
         <button onClick={()=>createWidgetForTopic(topicId)}>Create</button>
     </div>
@@ -93,13 +94,37 @@ const stateToPropertyMapper = (state) => ({
     topicId: state.widgetReducer.topicId,
     editing: state.widgetReducer.editing,
     preview: state.widgetReducer.preview
+
 })
 
 const propertyToDispatchMapper = (dispatch) => ({
-    changePreviewToFalse: (widget) =>
+    saveAll:(topicId, widgets)=>
+        widgetService.savaAllWidgets(topicId,widgets),
+
+    moveUpWidget: (widgets) =>
         dispatch({
-            type: "CHANGE_PREVIEW_TO_FALSE"
-            }),
+            type: "MOVE_WIDGET" ,
+            widgets: widgets
+        }),
+
+    moveDownWidget: (widgets) =>
+        dispatch({
+            type: "MOVE_WIDGET" ,
+            widgets: widgets
+        }),
+
+    editingWidget:(topicId)=>
+        dispatch({
+            type: "EDITING_WIDGET" ,
+            topicId: topicId
+        }),
+
+    editingWidgetFalse:(topicId)=>
+        dispatch({
+            type: "EDITING_WIDGET_FALSE" ,
+            topicId: topicId
+        }),
+
 
     deleteWidget: (widgetId) =>
         widgetService.deleteWidget(widgetId)
@@ -107,7 +132,6 @@ const propertyToDispatchMapper = (dispatch) => ({
                 type: "DELETE_WIDGET",
                 widgetId
             })),
-
     createWidgetForTopic: (topicId) =>
         widgetService.createWidgetForTopic(
             topicId, {
@@ -123,21 +147,15 @@ const propertyToDispatchMapper = (dispatch) => ({
             type: "UPDATE_WIDGET",
             widget: widget
         }),
-    editWidget: (widget) =>
-        widgetService.updateWidget(widget.id, {
-            ...widget, editing: true
-        }).then(status =>
-            dispatch({
-                type: "UPDATE_WIDGET",
-                widget: {...widget, editing: true}
-            })),
+
     okWidget: (widget) =>
         widgetService.updateWidget(widget.id, {
-            ...widget, editing: false
+            ...widget,
         }).then(status => dispatch({
             type: "UPDATE_WIDGET",
-            widget: {...widget, editing: false}
+            widget: {...widget}
         }))
+
 })
 
 

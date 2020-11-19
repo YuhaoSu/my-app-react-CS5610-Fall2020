@@ -34,6 +34,7 @@ export default class CourseTableComponent extends CourseManagerComponent{
                     {
                         this.props.courses.map(course =>
                             <CourseCard
+                                key={course._id}
                                 ref="cardId"
                                 deleteCourse={this.props.deleteCourse}
                                 course={course}/>

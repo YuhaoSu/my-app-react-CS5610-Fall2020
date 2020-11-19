@@ -1,12 +1,9 @@
 // const WIDGET_URL = "http://localhost:8080/api/widgets"
 // const TOPIC_URL  = "http://localhost:8080/api/topics"
 
-const WIDGET_URL = "http://sheltered-brook-47348.herokuapp.com/api/widgets"
-const TOPIC_URL  = "http://sheltered-brook-47348.herokuapp.com/api/topics"
 
-
-// const WIDGET_URL = "https://wbdv-generic-server.herokuapp.com/api/Yuhao-Augus-Su/widgets"
-// const TOPIC_URL  = "https://wbdv-generic-server.herokuapp.com/api/Yuhao-Augus-Su/topics"
+const WIDGET_URL = "https://cs5610-java-server-yuhao.herokuapp.com/api/widgets"
+const TOPIC_URL  = "https://cs5610-java-server-yuhao.herokuapp.com/api/topics"
 
 
 export const findAllWidgets = () =>
@@ -22,9 +19,9 @@ export const createWidgetForTopic = (topicId) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`, {
         method: "POST",
         body: JSON.stringify({
-            name: "NEW HEADING",
-            type: "list",
-            url: "http://icons.iconarchive.com/icons/aroche/delta/256/File-JPG-icon.png"
+            name: "Widget Name",
+            type: "HEADING",
+            size: 1,
         }),
         headers: {
             "content-type": "application/json"
@@ -42,16 +39,27 @@ export const updateWidget = (widgetId, newWidget) =>
     }).then(response => response.json())
 
 export const deleteWidget = (widgetId) =>
-    // fetch(`${WIDGET_URL}/${widgetId}`,{
-    //     method: "DELETE"
-    // }).then(response => response.json())
     fetch(`${WIDGET_URL}/${widgetId}`,{
         method: "DELETE"
     }).then(response => response.json())
 
+export const findWidgetById = (widgetId) =>
+    fetch(`${WIDGET_URL}/${widgetId}`)
+        .then(response => response.json())
+
+export const savaAllWidgets = (topicId, widgets) =>
+    fetch(`${TOPIC_URL}/${topicId}/widgets`,{
+        method: "PUT",
+        body: JSON.stringify(widgets),
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then(response => response.json())
 
 
 export default {
+    findWidgetById,
+    savaAllWidgets,
     findAllWidgets,
     createWidgetForTopic,
     findWidgetsForTopic,
