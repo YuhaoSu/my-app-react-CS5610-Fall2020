@@ -70,4 +70,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## HeroKu Link
 Please copy and visit:  
-https://shrouded-escarpment-68572.herokuapp.com
+https://cs5610-react-client-yuhao.herokuapp.com/
