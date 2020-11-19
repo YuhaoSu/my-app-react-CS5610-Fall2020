@@ -1,9 +1,9 @@
-// const WIDGET_URL = "http://localhost:8080/api/widgets"
-// const TOPIC_URL  = "http://localhost:8080/api/topics"
+const WIDGET_URL = "http://localhost:8080/api/widgets"
+const TOPIC_URL  = "http://localhost:8080/api/topics"
 
 
-const WIDGET_URL = "https://cs5610-java-server-yuhao.herokuapp.com/api/widgets"
-const TOPIC_URL  = "https://cs5610-java-server-yuhao.herokuapp.com/api/topics"
+// const WIDGET_URL = "https://cs5610-java-server-yuhao.herokuapp.com/api/widgets"
+// const TOPIC_URL  = "https://cs5610-java-server-yuhao.herokuapp.com/api/topics"
 
 
 export const findAllWidgets = () =>
@@ -22,6 +22,10 @@ export const createWidgetForTopic = (topicId) =>
             name: "Widget Name",
             type: "HEADING",
             size: 1,
+            ordered: true,
+            text: '',
+            items: '',
+            src:'http://icons.iconarchive.com/icons/aroche/delta/256/File-JPG-icon.png',
         }),
         headers: {
             "content-type": "application/json"
