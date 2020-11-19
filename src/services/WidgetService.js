@@ -1,9 +1,9 @@
-const WIDGET_URL = "http://localhost:8080/api/widgets"
-const TOPIC_URL  = "http://localhost:8080/api/topics"
+// const WIDGET_URL = "http://localhost:8080/api/widgets"
+// const TOPIC_URL  = "http://localhost:8080/api/topics"
 
 
-// const WIDGET_URL = "https://cs5610-java-server-yuhao.herokuapp.com/api/widgets"
-// const TOPIC_URL  = "https://cs5610-java-server-yuhao.herokuapp.com/api/topics"
+const WIDGET_URL = "https://cs5610-java-server-yuhao.herokuapp.com/api/widgets"
+const TOPIC_URL  = "https://cs5610-java-server-yuhao.herokuapp.com/api/topics"
 
 
 export const findAllWidgets = () =>
